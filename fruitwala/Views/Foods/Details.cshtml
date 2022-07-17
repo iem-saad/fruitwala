@@ -1,0 +1,158 @@
+﻿@model fruitwala.Models.Comment
+@using fruitwala;
+@{
+   //Layout = "~/Views/Shared/_adminLayout.cshtml";
+   ViewData["Title"] = "Product Detail";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Details</title>
+</head>
+<body>
+
+    @if (ViewBag.User.isAdmin)
+    {
+        <div>
+            <h4>Foods</h4>
+            <hr />
+            <dl class="row">
+                <dt class = "col-sm-2">
+                    Name
+                </dt>
+                <dd class = "col-sm-10">
+                    @ViewBag.foods.Name
+                </dd>
+                <dt class = "col-sm-2">
+                    Description
+                </dt>
+                <dd class = "col-sm-10">
+                    @ViewBag.foods.Description
+                </dd>
+                <dt class = "col-sm-2">
+                    Price
+                </dt>
+                <dd class = "col-sm-10">
+                    @ViewBag.foods.Price
+                </dd>
+                <dt class = "col-sm-2">
+                    Image
+                </dt>
+                <dd class = "col-sm-10">
+                    @ViewBag.foods.Image
+                </dd>
+                <dt class = "col-sm-2">
+                    isAvailable
+                </dt>
+                <dd class = "col-sm-10">
+                    @ViewBag.foods.isAvailable
+                </dd>
+                <dt class = "col-sm-2">
+                    Food Type
+                </dt>
+                <dd class = "col-sm-10">
+                    @ViewBag.foods.FoodTypes.FoodType
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@ViewBag.foods.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }
+    <!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>See more Details</p>
+						<h1>Single Product</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+<!-- single product -->
+	<div class="single-product mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="single-product-img">
+						<img src="~/img/products/product-img-5.jpg" alt="">
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3> @ViewBag.foods.Name </h3>
+						<p class="single-product-pricing"><span>Per Kg</span> $@ViewBag.foods.Price </p>
+						<p> @ViewBag.foods.Description .</p>
+						<div class="single-product-form">
+							<form action="index.html">
+								<input type="number" placeholder="0">
+							</form>
+                            @if (ViewBag.foods.isAvailable)
+                            {
+							    <a asp-action="Buy" asp-route-id="@ViewBag.foods.Id" asp-controller="Cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                            }
+                            else
+                            {
+							    <a href="/" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ops! Out of stock</a>
+                            }
+
+							<p><strong>Categories: </strong> @ViewBag.foods.FoodTypes.FoodType </p>
+						</div>
+						<h4>Share:</h4>
+						<ul class="product-share">
+							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href=""><i class="fab fa-twitter"></i></a></li>
+							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end single product -->
+     @foreach (Comment comment in ViewBag.comments)
+     {
+        <div class="container mt-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-8">
+                <div class="d-flex flex-column comment-section">
+                    <div class="bg-white p-2">
+                        <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                            <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">@comment.User.FirstName</span><span class="date text-black-50">Shared publicly - @comment.Date</span></div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">@comment.Description</p>
+                        </div>
+                    </div>
+                @if(ViewBag.User.isAdmin)
+                {
+                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Comments" asp-route-id="@comment.Id">DELETE</a>
+                }
+                </div>
+            </div>
+        </div>
+        </div>
+     }
+<div class="bg-light p-2">
+    <form asp-controller="Comments" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea asp-for="Description"  class="form-control ml-1 shadow-none textarea"></textarea></div>
+        <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="submit" value="Create">Post comment</button></div>
+        <input asp-for="FoodTypeId" value="@ViewBag.foods.Id" class="d-none" />
+        <input asp-for="UserId" value="@ViewBag.usrID" class="d-none" />
+        <input asp-for="Date" value="@DateTime.Now" class="d-none" />
+    </form>
+</div>
+
+</body>
+</html>

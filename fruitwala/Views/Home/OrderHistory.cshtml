@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Order History";
+}
+
+<div class="row">
+	<div class="col-lg-8 offset-lg-2 text-center">
+		<div class="section-title">	
+			<h3><span class="orange-text">Our</span> Order History</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+		</div>
+	</div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Ordered By
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.orders) {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.TotalPrice
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                @item.User.FirstName
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

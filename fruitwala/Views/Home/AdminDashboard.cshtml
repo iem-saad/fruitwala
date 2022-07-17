@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+@if (ViewBag.User.isAdmin)
+{
+<div class="container">
+    <div class="row text-center">
+        <h1 style="padding-left: 25rem!important;">@ViewData["Title"]</h1>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Welcome!</h4>
+          <p>Our Admin, Fruits are. Add more about the top fruit varieties grown, sold and exported from the United States. While the U.S. grows more than 1000+ fruit varieties,listed have all the imported and local varieties. Each of your effort to add matters.</p>
+          <hr>
+          <p class="mb-0">No one can reap the fruit before planting the trees. You forget that the fruits belong to all and that the land belongs to no one</p>
+        </div>
+        <div class="card ml-5" style="width: 18rem;">
+          <img class="card-img-top" src="~/img/mf.jpg" alt="mf">
+          <div class="card-body">
+            <h5 class="card-title">Fruit Category Management</h5>
+            <p class="card-text">Create changes in the listed fruit variety available at this online mart.</p>
+            <a asp-controller="FoodTypes" asp-action="Index" class="btn btn-primary">MANAGE!</a>
+          </div>
+        </div>
+        <div class="card ml-5" style="width: 18rem;">
+          <img class="card-img-top" src="~/img/mft.png" alt="mfts" style="height: 288px;">
+          @*~/img/~/img/mft.png   *@
+          <div class="card-body">
+            <h5 class="card-title">Fruit Variety Management</h5>
+            <p class="card-text">Create changes in the listed types of the fruit variety available at this online mart</p>
+            <a asp-controller="Foods" asp-action="Index" class="btn btn-primary">MANAGE!</a>
+          </div>
+        </div>
+         <div class="card ml-5" style="width: 18rem;">
+          <img class="card-img-top" src="~/img/rw.png" alt="rw">
+          <div class="card-body">
+            <h5 class="card-title">Food Reviews</h5>
+            <p class="card-text">Add your Reviews for the fruit variety available at this online mart.</p>
+            <a asp-controller="Reviews" asp-action="Index" class="btn btn-primary">MANAGE!</a>
+          </div>
+        </div>
+    </div>
+</div>
+}

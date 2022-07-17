@@ -1,0 +1,84 @@
+﻿@{
+}
+<script>
+	$('#flexRadioDefault2').click(function(){
+		$('#exampleFormControlTextarea1').attr("disabled", false);
+	})
+	$('#flexRadioDefault1').click(function(){
+		$('#exampleFormControlTextarea1').attr("disabled", true);
+	})
+</script>
+<!-- check out section -->
+	<div class="checkout-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"checked>
+					  <label class="form-check-label pl-3" for="flexRadioDefault1">
+						Ship to Registered Address
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+					  <label class="form-check-label pl-3" for="flexRadioDefault2">
+						Ship to Different Address
+					  </label>
+					</div>
+					<div class="form-group pt-5">
+						<label for="exampleFormControlTextarea1">Shipping Address</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled></textarea>
+					  </div>
+
+
+				</div>
+
+				<div class="col-lg-4">
+					<div class="order-details-wrap">
+						<table class="order-details">
+							<thead>
+								<tr>
+									<th>Your order Details</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody class="order-details-body">
+								<tr>
+									<td>Product</td>
+									<td>Total</td>
+								</tr>
+								<tr>
+									<td>Strawberry</td>
+									<td>$85.00</td>
+								</tr>
+								<tr>
+									<td>Berry</td>
+									<td>$70.00</td>
+								</tr>
+								<tr>
+									<td>Lemon</td>
+									<td>$35.00</td>
+								</tr>
+							</tbody>
+							<tbody class="checkout-details">
+								<tr>
+									<td>Subtotal</td>
+									<td>$190</td>
+								</tr>
+								<tr>
+									<td>Shipping</td>
+									<td>$50</td>
+								</tr>
+								<tr>
+									<td>Total</td>
+									<td>$240</td>
+								</tr>
+							</tbody>
+						</table>
+						<a asp-action="AddCard" asp-controller="Cart" class="boxed-btn">Place Order</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end check out section -->

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<fruitwala.Models.Foods>
+
+@{
+   // Layout = "~/Views/Shared/_adminLayout.cshtml";
+   ViewData["Title"] = "Products";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+@if (ViewBag.User.isAdmin)
+{
+    
+<p>
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodTypes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodTypes.FoodType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+}
+
+<!-- product section -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Our</span> Products</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+                @foreach (var item in Model) {
+				    <div class="col-lg-4 col-md-6 text-center">
+					    <div class="single-product-item">
+						    <div class="product-image">
+							    <a asp-action="Details" asp-route-id="@item.Id"><img src="~/img/products/product-img-1.jpg" alt=""></a>
+						    </div>
+						    <h3> @Html.DisplayFor(modelItem => item.Name) | @Html.DisplayFor(modelItem => item.FoodTypes.FoodType) </h3>
+						    <p class="product-price"><span>Per Kg</span> @Html.DisplayFor(modelItem => item.Price)$ </p>
+						    <a asp-action="Buy" asp-route-id="@item.Id" asp-controller="Cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					    </div>
+				    </div>
+                }
+			</div>
+		</div>
+	</div>
+	<!-- end product section -->
+
+</body>
+</html>
