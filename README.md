@@ -29,7 +29,10 @@ Customer can add an item to the cart from the given items.
 9. Customer can place an order if he is logged in.  
 
 
+### Extras
+
 Stated Below are versions of packages used in this project:
+
 > .NET MVC 6.0
 
 > Identity Core 2.2.3
@@ -37,6 +40,12 @@ Stated Below are versions of packages used in this project:
 > Session 2.2.0
 
 > Sql Server 6.0.1
+
+Following is snapshot of UI of this project.
+As the main learning object of project was to work on .NET hence for front-end I usedaa bootstrap 4 template name `Fruitkha`
+
+
+![fruitwala](https://user-images.githubusercontent.com/54322326/179847303-cbfa5b4b-fdda-40b8-8b54-accfd5dcc2c4.png)
 
 
 
